@@ -1,4 +1,4 @@
-
+import numpy as np
 
 def list_menu():
     # Initializing a sample list
@@ -102,6 +102,108 @@ def list_menu():
         else:
             print("Invalid choice! Please enter a number between 1 and 12.")
 
+def numpy_menu():
+    # Initializing a sample NumPy array
+    arr = np.array([10, 25, 15, 40, 30])
+    
+    while True:
+        print("\n==============================")
+        print("   NUMPY ARRAY OPERATIONS     ")
+        print("==============================")
+        print("1. Display Array")
+        print("2. Access Element (Indexing)")
+        print("3. Slicing")
+        print("4. Update / Modify Element")
+        print("5. Search / Filter Elements")
+        print("6. Iterate through Array")
+        print("7. Vectorized Mathematical Operations")
+        print("8. Aggregation Functions (Sum, Mean, Max, Min)")
+        print("9. Sort and Reverse")
+        print("10. Return to Main Menu")
+        
+        choice = input("Enter your choice (1-10): ")
+        
+        if choice == '1':
+            print("Current Array:\n", arr)
+            
+        elif choice == '2':
+            try:
+                idx = int(input(f"Enter index (0 to {len(arr)-1}): "))
+                print(f"Element at index {idx}: {arr[idx]}")
+            except Exception as e:
+                print("Error:", e)
+                
+        elif choice == '3':
+            try:
+                start = int(input("Enter start index: "))
+                end = int(input("Enter end index: "))
+                print(f"Sliced Array [{start}:{end}]:", arr[start:end])
+            except Exception as e:
+                print("Error:", e)
+                
+        elif choice == '4':
+            try:
+                idx = int(input(f"Enter index to update (0 to {len(arr)-1}): "))
+                val = int(input("Enter new value: "))
+                arr[idx] = val
+                print("Updated Array:", arr)
+            except Exception as e:
+                print("Error:", e)
+                
+        elif choice == '5':
+            val = int(input("Find elements greater than value: "))
+            filtered = arr[arr > val]
+            print(f"Elements > {val}:", filtered)
+            
+        elif choice == '6':
+            print("Iterating through array:")
+            for item in arr:
+                print(item, end=" ")
+            print()
+            
+        elif choice == '7':
+            print("Original Array:", arr)
+            print("Array + 5 (Scalar Addition):", arr + 5)
+            print("Array * 2 (Scalar Multiplication):", arr * 2)
+            print("Square root of elements:", np.sqrt(arr))
+            
+        elif choice == '8':
+            print("Sum:", np.sum(arr))
+            print("Mean:", np.mean(arr))
+            print("Max:", np.max(arr))
+            print("Min:", np.min(arr))
+            
+        elif choice == '9':
+            sorted_arr = np.sort(arr)
+            print("Sorted Array:", sorted_arr)
+            reversed_arr = arr[::-1]
+            print("Reversed Array:", reversed_arr)
+            
+        elif choice == '10':
+            break
+        else:
+            print("Invalid choice! Please enter a number between 1 and 10.")
+
+def main():
+    while True:
+        print("\n==================================")
+        print("   ARRAY OPERATIONS MAIN MENU     ")
+        print("==================================")
+        print("1. Work with Python Lists")
+        print("2. Work with NumPy Arrays")
+        print("3. Exit Program")
+        
+        main_choice = input("Enter your choice (1-3): ")
+        
+        if main_choice == '1':
+            list_menu()
+        elif main_choice == '2':
+            numpy_menu()
+        elif main_choice == '3':
+            print("Exiting program. Goodbye!")
+            break
+        else:
+            print("Invalid choice! Please choose 1, 2, or 3.")
 
 if __name__ == "__main__":
     main()
